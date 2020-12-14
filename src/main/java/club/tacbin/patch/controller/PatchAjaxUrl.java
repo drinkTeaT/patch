@@ -22,9 +22,10 @@ public class PatchAjaxUrl {
 
     @PostMapping("/fromWeb")
     public void getFromWeb(String url) {
+        System.out.println("请求时间: " + System.nanoTime() + " url: " + url);
         url = url.split("\\?")[0];
         urlMap.put(url, new Object());
-        System.out.println("收到请求次数:" + count.addAndGet(1) + " url: " + url);
+        count.addAndGet(1);
     }
 
     @GetMapping("/toWeb")
@@ -33,12 +34,16 @@ public class PatchAjaxUrl {
         for (String url : urlMap.keySet()) {
             urls.add(url);
         }
-        System.out.println(urls);
         return urls;
     }
 
     @GetMapping("/reset")
-    public void reset() {
+    public List<String> reset() {
         urlMap = new ConcurrentHashMap<>();
+        List<String> urls = new ArrayList<>();
+        for (String url : urlMap.keySet()) {
+            urls.add(url);
+        }
+        return urls;
     }
 }
