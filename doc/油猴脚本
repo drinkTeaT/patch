@@ -5,6 +5,7 @@
 // @description  try to take over the world!
 // @author       You
 // @match        https://*/*
+// @match        http://*/*
 // @grant        none
 // @require      http://libs.baidu.com/jquery/2.1.4/jquery.min.js
 // ==/UserScript==
